@@ -1,0 +1,15 @@
+﻿  Diablo-Chinese.cpp
+  Memory.cpp
+C:\Users\19848\Desktop\c++\Diablo-Chinese\Diablo-Chinese\Memory.cpp(257,12): warning C4305: “return”: 从“int”到“bool”截断
+C:\Users\19848\Desktop\c++\Diablo-Chinese\Diablo-Chinese\Memory.cpp(259,11): warning C4305: “return”: 从“int”到“bool”截断
+  Opcode.cpp
+C:\Users\19848\Desktop\c++\Diablo-Chinese\Diablo-Chinese\Opcode.cpp(75,44): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\19848\Desktop\c++\Diablo-Chinese\Diablo-Chinese\Opcode.cpp(83,38): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\19848\Desktop\c++\Diablo-Chinese\Diablo-Chinese\Opcode.cpp(97,39): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\19848\Desktop\c++\Diablo-Chinese\Diablo-Chinese\Opcode.cpp(97,39): warning C4267: “初始化”: 从“size_t”转换到“const int”，可能丢失数据
+C:\Users\19848\Desktop\c++\Diablo-Chinese\Diablo-Chinese\Opcode.cpp(114,25): warning C4244: “=”: 从“unsigned long”转换到“BYTE”，可能丢失数据
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 120 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Diablo-Chinese.vcxproj -> C:\Users\19848\Desktop\c++\Diablo-Chinese\x64\Release\Diablo-Chinese.exe
