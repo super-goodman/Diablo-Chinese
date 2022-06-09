@@ -5,7 +5,7 @@
 #include "Memory.h"
 #include "Opcode.h"
 
-bool scan(UINT64 startAddr,byte* buffer)
+bool scan(UINT64 startAddr, byte* buffer)
 {
     int count = 0;
     //替换字符
@@ -15,28 +15,29 @@ bool scan(UINT64 startAddr,byte* buffer)
     {
         UINT64 addrTemp = startAddr + i * 102400;
         //随便显示下
-        std::cout << "进度" << i/ 260000.0*100<<std::endl;
+        //std::cout << "进度" << i/ 260000.0*100<<std::endl;
         Memory::RM(addrTemp, 102400, buffer);
         for (int j = 0; j < 102400; j++)
         {
             //寻找符合"itIT"的字符串
-            if (buffer[j] == 0x69)
+            if (buffer[j] == 0x65)
             {
-                if (buffer[j + 1] == 0x74 && buffer[j + 2] == 0x49 && buffer[j + 3] == 0x54)
+                if (buffer[j + 1] == 0x6e && buffer[j + 2] == 0x55 && buffer[j + 3] == 0x53 && buffer[j + 8] == 0xBE && buffer[j + 9] == 0x75)
                 {
                     addrTemp = addrTemp + j;
                     count++;
                     std::cout << "替换成功" << std::hex << count << std::endl;
-         
-                    if (count >= 1)
+                    Memory::W4(addrTemp, zhCN);
+                    if (count >= 2000)
                     {
                         std::cout << "替换结束" << std::endl;
                         for (int k = 0; k < 5; k++)
                         {
                             //替换
-                            Memory::W4(addrTemp,zhCN);
+                            std::cout << std::hex << addrTemp << std::endl;
+                            //Memory::W4(addrTemp,zhCN);
                             std::cout << "请切换语言为Itali" << std::endl;
-                         
+
                         }
                         getchar();
                         return true;
@@ -58,17 +59,17 @@ int main()
     auto mem = new Memory();
     auto opcode = new Opcode(Memory::pid);
     //随便找个特征码目的是缩短寻找地址的时间
-	opcode->findBaseAddressOffset("48 8B ?? ?? ?? ?? ?? 45 33 C9 48 8B CD 4D 8B C3 49 8B D2", address, 3, 4);
-	UINT64 addStart = mem->R8(mem->getGameModuleBase()+ address[0] +0x10);
-	addStart = ((addStart >> 28) - 1) << 28;
+    opcode->findBaseAddressOffset("48 8B ?? ?? ?? ?? ?? 45 33 C9 48 8B CD 4D 8B C3 49 8B D2", address, 3, 4);
+    UINT64 addStart = mem->R8(mem->getGameModuleBase() + address[0] + 0x10);
+    addStart = ((addStart >> 28) - 1) << 28;
 
     //用于存储内存
-    byte *copyBuf=new byte[102400]{0};
+    byte* copyBuf = new byte[102400]{ 0 };
 
     //开始遍历内存并替换
     scan(addStart, copyBuf);
     delete[] copyBuf;
-	delete mem;
+    delete mem;
     delete opcode;
     std::cout << "Hello World!\n";
 }
